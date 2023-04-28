@@ -105,7 +105,7 @@ namespace MenuSudoku
                                 sudokuHard.Play();
                                 break;
                             case 2:
-                                Console.WriteLine("Прозводимо вихiд до меню...");
+                                Console.WriteLine("\t\tПрозводимо вихiд до меню...");
                                 Console.ReadKey(true);
                                 break;
                         }
