@@ -77,17 +77,17 @@ namespace MenuSudoku
                 Console.WriteLine("\n\n\t\t\tЛегкий");
                 Console.ForegroundColor = (selectedMenuItem == 1) ? ConsoleColor.Green : ConsoleColor.White;
                 Console.WriteLine("\t\t\tВажкий");
-                Console.ForegroundColor = (selectedMenuItem == 1) ? ConsoleColor.Green : ConsoleColor.White;
+                Console.ForegroundColor = (selectedMenuItem == 2) ? ConsoleColor.Green : ConsoleColor.White;
                 Console.WriteLine("\t\t     Вихiд до меню");
+                Console.ForegroundColor = ConsoleColor.White;
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-
                 switch (keyInfo.Key)
                 {
                     case ConsoleKey.UpArrow:
                         selectedMenuItem = Math.Max(0, selectedMenuItem - 1);
                         break;
                     case ConsoleKey.DownArrow:
-                        selectedMenuItem = Math.Min(1, selectedMenuItem + 1);
+                        selectedMenuItem = Math.Min(2, selectedMenuItem + 1);
                         break;
                     case ConsoleKey.Enter:
                         exitmenu = true;
