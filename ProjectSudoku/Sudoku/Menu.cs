@@ -77,6 +77,8 @@ namespace MenuSudoku
                 Console.WriteLine("\n\n\t\t\tЛегкий");
                 Console.ForegroundColor = (selectedMenuItem == 1) ? ConsoleColor.Green : ConsoleColor.White;
                 Console.WriteLine("\t\t\tВажкий");
+                Console.ForegroundColor = (selectedMenuItem == 1) ? ConsoleColor.Green : ConsoleColor.White;
+                Console.WriteLine("\t\t     Вихiд до меню");
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
                 switch (keyInfo.Key)
@@ -101,6 +103,10 @@ namespace MenuSudoku
                                 SudokuGeneratorStrategy strategyHard = new SudokuGenerator(9);
                                 Sudoku sudokuHard = new Sudoku(strategyHard);
                                 sudokuHard.Play();
+                                break;
+                            case 2:
+                                Console.WriteLine("Прозводимо вихiд до меню...");
+                                Console.ReadKey(true);
                                 break;
                         }
                         break;
