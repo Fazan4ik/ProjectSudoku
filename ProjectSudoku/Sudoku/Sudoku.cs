@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -243,7 +243,7 @@ namespace ProjectSudoku
                     Console.ReadKey(true);
                     break;
                 }
-                Console.Write("Введiть число (1-{0}): ", grid.GetLength(0));
+                Console.Write("\t\tВведiть число (1-{0}): ", grid.GetLength(0));
                 string value = Console.ReadLine();
                 int valuetest;
                 if (int.TryParse(value, out valuetest))
@@ -251,16 +251,16 @@ namespace ProjectSudoku
                     if (CanPlaceNumber(row, col, int.Parse(value)))
                     {
                         grid[row, col] = int.Parse(value);
-                        Console.WriteLine("Число {0} успiшно записано в клiтинку ({1}, {2})...", int.Parse(value), row + 1, col + 1);
+                        Console.WriteLine("\t\tЧисло {0} успiшно записано в клiтинку ({1}, {2})...", int.Parse(value), row + 1, col + 1);
                     }
                     else
                     {
-                        Console.WriteLine("Не можна записати число {0} у клiтинку ({1}, {2})...", int.Parse(value), row + 1, col + 1);
+                        Console.WriteLine("\t\tНе можна записати число {0} у клiтинку ({1}, {2})...", int.Parse(value), row + 1, col + 1);
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Неправильно введено число");
+                    Console.WriteLine("\t\tНеправильно введено число");
                 }
                 Console.ReadKey();
             }
@@ -407,11 +407,12 @@ namespace ProjectSudoku
         private void DisplayGrid(int c1, int c2)
         {
             Console.Clear();
-            Console.WriteLine("Ласкаво просимо до гри Судоку!");
+            Console.WriteLine("\t\tЛаскаво просимо до гри Судоку!");
             if (grid.GetLength(0) == 3)
             {
                 for (int row = 0; row < grid.GetLength(0); row++)
                 {
+                    Console.Write("\t\t\t");
                     for (int col = 0; col < grid.GetLength(0); col++)
                     {
                         if (row == c1 && col == c2)
@@ -435,6 +436,7 @@ namespace ProjectSudoku
                 {
                     if (row == 3 || row == 6)
                     {
+                        Console.Write("\t\t");
                         for (int i = 0; i < grid.GetLength(0)-1; i++)
                         {
                             Console.ForegroundColor = ConsoleColor.White;
@@ -442,6 +444,7 @@ namespace ProjectSudoku
                         }
                         Console.WriteLine();
                     }
+                    Console.Write("\t\t");
                     Console.Write(" ");
                     for (int col = 0; col < grid.GetLength(0); col++)
                     {
