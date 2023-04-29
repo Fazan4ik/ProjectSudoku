@@ -368,8 +368,10 @@ namespace ProjectSudoku
 
         private bool CanPlaceNumber(int row, int col, int value)
         {
-            if (value < 0 || value > grid.GetLength(0))
+            if (value < 1 || value > grid.GetLength(0))
             {
+                if (value == 0)
+                    return true;
                 return false;
             }
             for (int c = 0; c < grid.GetLength(0); c++)
