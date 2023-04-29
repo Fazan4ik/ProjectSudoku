@@ -188,6 +188,7 @@ namespace ProjectSudoku
             int row = 0;
             int col = 0;
             bool enter, exit;
+            int value = 0;
             ConsoleKeyInfo input;
             while (!IsSolved())
             {
@@ -198,6 +199,8 @@ namespace ProjectSudoku
                     Console.SetCursorPosition(row, col);
                     Console.ForegroundColor = ConsoleColor.White;
                     DisplayGrid(row, col);
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("\n\t\tНатиснiть на кнопки (0 стерти число) (1-{0})", grid.GetLength(0));
                     input = Console.ReadKey(true);
                     Console.ForegroundColor = ConsoleColor.Green;
                     switch (input.Key)
@@ -227,9 +230,57 @@ namespace ProjectSudoku
                                 col++;
                             }
                             break;
-                        case ConsoleKey.Enter:
+                        case ConsoleKey.NumPad0:
+                        case ConsoleKey.D0:
+                            value = 0;
                             enter = true;
                             break;
+                        case ConsoleKey.NumPad1:
+                        case ConsoleKey.D1:
+                            value = 1;
+                            enter = true;
+                            break;
+                        case ConsoleKey.NumPad2:
+                        case ConsoleKey.D2:
+                            value = 2;
+                            enter = true;
+                            break;
+                        case ConsoleKey.NumPad3:
+                        case ConsoleKey.D3:
+                            value = 3;
+                            enter = true;
+                            break;
+                        case ConsoleKey.NumPad4:
+                        case ConsoleKey.D4:
+                            value = 4;
+                            enter = true;
+                            break;
+                        case ConsoleKey.NumPad5:
+                        case ConsoleKey.D5:
+                            value = 5;
+                            enter = true;
+                            break;
+                        case ConsoleKey.NumPad6:
+                        case ConsoleKey.D6:
+                            value = 6;
+                            enter = true;
+                            break;
+                        case ConsoleKey.NumPad7:
+                        case ConsoleKey.D7:
+                            value = 7;
+                            enter = true;
+                            break;
+                        case ConsoleKey.NumPad8:
+                        case ConsoleKey.D8:
+                            value = 8;
+                            enter = true;
+                            break;
+                        case ConsoleKey.NumPad9:
+                        case ConsoleKey.D9:
+                            value = 9;
+                            enter = true;
+                            break;
+
                         case ConsoleKey.Escape:
                             enter = true;
                             exit = true;
@@ -240,31 +291,23 @@ namespace ProjectSudoku
                 if (exit == true)
                 {
                     Console.WriteLine("\t\tВи здалися, прозводимо вихiд....");
-                    Console.ReadKey(true);
+                    Console.ReadKey();
                     break;
                 }
-                Console.Write("\t\tВведiть число (1-{0}): ", grid.GetLength(0));
-                string value = Console.ReadLine();
-                int valuetest;
-                if (int.TryParse(value, out valuetest))
+                if (CanPlaceNumber(row, col, value))
                 {
-                    if (CanPlaceNumber(row, col, int.Parse(value)))
-                    {
-                        grid[row, col] = int.Parse(value);
-                        Console.WriteLine("\t\tЧисло {0} успiшно записано в клiтинку ({1}, {2})...", int.Parse(value), row + 1, col + 1);
-                    }
+                    if (value == 0)
+                        Console.WriteLine("\t\tКлiтинка ({0}, {1}) успiшно стерта ", row + 1, col + 1);
                     else
-                    {
-                        Console.WriteLine("\t\tНе можна записати число {0} у клiтинку ({1}, {2})...", int.Parse(value), row + 1, col + 1);
-                    }
+                        Console.WriteLine("\t\tЧисло {0} успiшно записано в клiтинку ({1}, {2})...", value, row + 1, col + 1);
+                    grid[row, col] = value;
                 }
                 else
                 {
-                    Console.WriteLine("\t\tНеправильно введено число");
+                    Console.WriteLine("\t\tНе можна записати число {0} у клiтинку ({1}, {2})...", value, row + 1, col + 1);
                 }
                 Console.ReadKey();
             }
-
         }
         private bool IsSolved()
         {
@@ -439,7 +482,7 @@ namespace ProjectSudoku
                     if (row == 3 || row == 6)
                     {
                         Console.Write("\t\t");
-                        for (int i = 0; i < grid.GetLength(0)-1; i++)
+                        for (int i = 0; i < grid.GetLength(0) - 1; i++)
                         {
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.Write("---");
