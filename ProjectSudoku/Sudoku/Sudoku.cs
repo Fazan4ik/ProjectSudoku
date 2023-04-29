@@ -304,7 +304,10 @@ namespace ProjectSudoku
                 }
                 else
                 {
-                    Console.WriteLine("\t\tНе можливо записати число {0} у клiтинку ({1}, {2})...", value, row + 1, col + 1);
+                    if(value==0)
+                        Console.WriteLine("\t\tНе можливо стерти клiтинку ({0}, {1})...", row + 1, col + 1);
+                    else
+                        Console.WriteLine("\t\tНе можливо записати число {0} у клiтинку ({1}, {2})...", value, row + 1, col + 1);
                 }
                 Console.ReadKey();
             }
