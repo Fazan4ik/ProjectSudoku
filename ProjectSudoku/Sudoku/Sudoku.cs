@@ -200,7 +200,7 @@ namespace ProjectSudoku
                     Console.ForegroundColor = ConsoleColor.White;
                     DisplayGrid(row, col);
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\n\t\tНатиснiть на кнопки (0 стерти число, ESC вихiд) (1-{0})", grid.GetLength(0));
+                    Console.WriteLine("\n\t\tНатиснiть на кнопки (1-{0}), (0 стерти число, ESC вихiд) ", grid.GetLength(0));
                     input = Console.ReadKey(true);
                     Console.ForegroundColor = ConsoleColor.Green;
                     switch (input.Key)
