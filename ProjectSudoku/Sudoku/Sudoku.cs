@@ -304,7 +304,7 @@ namespace ProjectSudoku
                 }
                 else
                 {
-                    Console.WriteLine("\t\tНе можна записати число {0} у клiтинку ({1}, {2})...", value, row + 1, col + 1);
+                    Console.WriteLine("\t\tНе можливо записати число {0} у клiтинку ({1}, {2})...", value, row + 1, col + 1);
                 }
                 Console.ReadKey();
             }
@@ -414,7 +414,14 @@ namespace ProjectSudoku
             if (value < 1 || value > grid.GetLength(0))
             {
                 if (value == 0)
+                {
+                    if (grid[row,col] == 0)
+                    {
+                        return false;
+                    }
                     return true;
+                }
+                    
                 return false;
             }
             for (int c = 0; c < grid.GetLength(0); c++)
