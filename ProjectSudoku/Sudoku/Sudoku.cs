@@ -501,8 +501,5 @@ namespace ProjectSudoku
                 Console.WriteLine();
             }
         }
-
-
     }
-
 }
