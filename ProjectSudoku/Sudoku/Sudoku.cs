@@ -15,25 +15,30 @@ namespace ProjectSudoku
         private int BoardSize = 9;
         private const int SubgridSize = 3;
         private const int MaxIterations = 100;
-
+        private int difficult;
+        Random random = new Random();
         private int[,] board;
 
         public SudokuGenerator()
         {
             board = new int[BoardSize, BoardSize];
         }
-        public SudokuGenerator(int sudokuSize)
+        public SudokuGenerator(int sudokuDifficult)
         {
-            BoardSize = sudokuSize;
+            difficult = sudokuDifficult;
             board = new int[BoardSize, BoardSize];
         }
 
         public int[,] GenerateGrid()
         {
-            if (BoardSize == 9)
+            if (difficult == 1)
             {
                 FillDiagonal();
                 FillRemaining(0, BoardSize);
+            }
+            if (difficult == 2)
+            {
+                FillDiagonal();
             }
             return board;
         }
@@ -99,7 +104,6 @@ namespace ProjectSudoku
                     }
                 }
             }
-
             for (int value = 1; value <= BoardSize; value++)
             {
                 if (IsValid(row, col, value))
@@ -150,7 +154,6 @@ namespace ProjectSudoku
         }
         private void Shuffle<T>(T[] array)
         {
-            Random random = new Random();
             for (int i = array.Length - 1; i > 0; i--)
             {
                 int j = random.Next(0, i + 1);
@@ -304,7 +307,7 @@ namespace ProjectSudoku
                 }
                 else
                 {
-                    if(value==0)
+                    if (value == 0)
                         Console.WriteLine("\t\tНе можливо стерти клiтинку ({0}, {1})...", row + 1, col + 1);
                     else
                         Console.WriteLine("\t\tНе можливо записати число {0} у клiтинку ({1}, {2})...", value, row + 1, col + 1);
@@ -418,13 +421,13 @@ namespace ProjectSudoku
             {
                 if (value == 0)
                 {
-                    if (grid[row,col] == 0)
+                    if (grid[row, col] == 0)
                     {
                         return false;
                     }
                     return true;
                 }
-                    
+
                 return false;
             }
             for (int c = 0; c < grid.GetLength(0); c++)
@@ -441,21 +444,20 @@ namespace ProjectSudoku
                     return false;
                 }
             }
-            if (grid.GetLength(0) == 9)
+
+            int squareRow = row / 3 * 3;
+            int squareCol = col / 3 * 3;
+            for (int r = squareRow; r < squareRow + 3; r++)
             {
-                int squareRow = row / 3 * 3;
-                int squareCol = col / 3 * 3;
-                for (int r = squareRow; r < squareRow + 3; r++)
+                for (int c = squareCol; c < squareCol + 3; c++)
                 {
-                    for (int c = squareCol; c < squareCol + 3; c++)
+                    if (grid[r, c] == value)
                     {
-                        if (grid[r, c] == value)
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 }
             }
+
             return true;
         }
 
@@ -463,67 +465,44 @@ namespace ProjectSudoku
         {
             Console.Clear();
             Console.WriteLine("\t\tЛаскаво просимо до гри Судоку!");
-            if (grid.GetLength(0) == 3)
+
+            for (int row = 0; row < grid.GetLength(0); row++)
             {
-                for (int row = 0; row < grid.GetLength(0); row++)
+                if (row == 3 || row == 6)
                 {
-                    Console.Write("\t\t\t");
-                    for (int col = 0; col < grid.GetLength(0); col++)
+                    Console.Write("\t\t");
+                    for (int i = 0; i < grid.GetLength(0) - 1; i++)
                     {
-                        if (row == c1 && col == c2)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.White;
-                        }
-                        Console.Write(grid[row, col] == 0 ? "-" : grid[row, col].ToString());
-                        Console.Write(" ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("---");
                     }
                     Console.WriteLine();
+                }
+                Console.Write("\t\t");
+                Console.Write(" ");
+                for (int col = 0; col < grid.GetLength(0); col++)
+                {
+                    if (row == c1 && col == c2)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    Console.Write(grid[row, col] == 0 ? "-" : grid[row, col].ToString());
+                    Console.Write(" ");
+                    if (col == 2 || col == 5)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write(" | ");
+                    }
                 }
                 Console.WriteLine();
             }
-            else
-            {
-                for (int row = 0; row < grid.GetLength(0); row++)
-                {
-                    if (row == 3 || row == 6)
-                    {
-                        Console.Write("\t\t");
-                        for (int i = 0; i < grid.GetLength(0) - 1; i++)
-                        {
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write("---");
-                        }
-                        Console.WriteLine();
-                    }
-                    Console.Write("\t\t");
-                    Console.Write(" ");
-                    for (int col = 0; col < grid.GetLength(0); col++)
-                    {
-                        if (row == c1 && col == c2)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.White;
-                        }
-                        Console.Write(grid[row, col] == 0 ? "-" : grid[row, col].ToString());
-                        Console.Write(" ");
-                        if (col == 2 || col == 5)
-                        {
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write(" | ");
-                        }
-                    }
-                    Console.WriteLine();
-                }
-            }
-
         }
+
+
     }
 
 }
