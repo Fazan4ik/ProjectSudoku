@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,7 +65,6 @@ namespace MenuSudoku
             Console.WriteLine("\t  SSS    UUU   DDDD    OOO   K   K   UUU");
             Console.ForegroundColor = ConsoleColor.White;
         }
-
         public static void SudokuEnter()
         {
             bool exitmenu = false;
@@ -94,13 +93,13 @@ namespace MenuSudoku
                         switch (selectedMenuItem)
                         {
                             case 0:
-                                SudokuGeneratorStrategy strategyEasy = new SudokuGenerator(3);
+                                SudokuGeneratorStrategy strategyEasy = new SudokuGenerator(1);
                                 Sudoku sudokuEasy = new Sudoku(strategyEasy);
                                 sudokuEasy.Play();
                                 break;
 
                             case 1:
-                                SudokuGeneratorStrategy strategyHard = new SudokuGenerator(9);
+                                SudokuGeneratorStrategy strategyHard = new SudokuGenerator(2);
                                 Sudoku sudokuHard = new Sudoku(strategyHard);
                                 sudokuHard.Play();
                                 break;
