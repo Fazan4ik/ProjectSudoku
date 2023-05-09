@@ -7,7 +7,7 @@ using ProjectSudoku;
 
 namespace MenuSudoku
 {
-    public static class Menu
+    public static class Menu // ЦЕ МЕНЮ
     {
         public static void MenuSud()
         {
@@ -53,7 +53,7 @@ namespace MenuSudoku
             }
         }
 
-        public static void Sudokuprint()
+        public static void Sudokuprint() // ВИВОДИМО ГАРНИЙ НАДПИС
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -65,7 +65,7 @@ namespace MenuSudoku
             Console.WriteLine("\t  SSS    UUU   DDDD    OOO   K   K   UUU");
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public static void SudokuEnter()
+        public static void SudokuEnter() // ВИБИРАЄМО ВАЖКІСТЬ СУДОКУ
         {
             bool exitmenu = false;
             int selectedMenuItem = 0;
@@ -90,7 +90,7 @@ namespace MenuSudoku
                         break;
                     case ConsoleKey.Enter:
                         exitmenu = true;
-                        switch (selectedMenuItem)
+                        switch (selectedMenuItem) // Вибираємо важкість саме тут
                         {
                             case 0:
                                 SudokuGeneratorStrategy strategyEasy = new SudokuGenerator(1);
