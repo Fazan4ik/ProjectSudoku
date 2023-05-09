@@ -11,6 +11,7 @@ namespace Real
     {
         static void Main(string[] args)
         {
+            Console.Title = "Sudoku";
             Menu.MenuSud();
 /*            Menu newMenu = new Menu();
             newMenu.MenuSud();*/
