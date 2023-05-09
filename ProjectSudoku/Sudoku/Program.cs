@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +13,6 @@ namespace Real
         {
             Console.Title = "Sudoku";
             Menu.MenuSud();
-/*            Menu newMenu = new Menu();
-            newMenu.MenuSud();*/
-/*            SudokuGeneratorStrategy strategy = new SudokuGenerator(9);
-            Sudoku sudoku = new Sudoku(strategy);
-            sudoku.Play();*/
-
         }
     }
 }
