@@ -53,7 +53,7 @@ namespace ProjectSudoku
 
         private void FillSubgrid(int row, int col)
         {
-            int[] values = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int[] values = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
             Shuffle(values);
 
             for (int i = 0; i < SubgridSize; i++)
