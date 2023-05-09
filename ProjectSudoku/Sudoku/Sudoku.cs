@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProjectSudoku
 {
-    public interface SudokuGeneratorStrategy
+    public interface SudokuGeneratorStrategy // ЭТО ПАТТЕРН СТРАТЕГИЯ 
     {
         int[,] GenerateGrid();
     }
-    class SudokuGenerator : SudokuGeneratorStrategy
+    class SudokuGenerator : SudokuGeneratorStrategy // ЭТО ГЕНЕРАЦИЯ СУДОКУ 
     {
         private int BoardSize = 9;
         private const int SubgridSize = 3;
@@ -29,7 +29,7 @@ namespace ProjectSudoku
             board = new int[BoardSize, BoardSize];
         }
 
-        public int[,] GenerateGrid()
+        public int[,] GenerateGrid() // Це генерація судоку з рівнем важкості
         {
             if (difficult == 1)
             {
@@ -43,7 +43,7 @@ namespace ProjectSudoku
             return board;
         }
 
-        private void FillDiagonal()
+        private void FillDiagonal() // Заповняємо поле по діагоналі бо так легше
         {
             for (int i = 0; i < BoardSize; i += SubgridSize)
             {
@@ -51,7 +51,7 @@ namespace ProjectSudoku
             }
         }
 
-        private void FillSubgrid(int row, int col)
+        private void FillSubgrid(int row, int col) // рандом цифр
         {
             int[] values = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
             Shuffle(values);
@@ -65,7 +65,7 @@ namespace ProjectSudoku
             }
         }
 
-        private void FillRemaining(int row, int col)
+        private void FillRemaining(int row, int col) // Заповняємо клітинки геніальним методом
         {
             if (col >= BoardSize && row < BoardSize - 1)
             {
@@ -126,7 +126,7 @@ namespace ProjectSudoku
             }
         }
 
-        private bool IsValid(int row, int col, int value)
+        private bool IsValid(int row, int col, int value) // перевірка заповняємості на корректність
         {
             for (int i = 0; i < BoardSize; i++)
             {
@@ -152,7 +152,7 @@ namespace ProjectSudoku
 
             return true;
         }
-        private void Shuffle<T>(T[] array)
+        private void Shuffle<T>(T[] array) // генерація
         {
             for (int i = array.Length - 1; i > 0; i--)
             {
@@ -162,23 +162,12 @@ namespace ProjectSudoku
                 array[i] = temp;
             }
         }
-        public void PrintBoard()
-        {
-            for (int i = 0; i < BoardSize; i++)
-            {
-                for (int j = 0; j < BoardSize; j++)
-                {
-                    Console.Write(board[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
-        }
     }
 
-    public class Sudoku
+    public class Sudoku // Цей класс зв'язан з судоку
     {
         private int[,] grid;
-        public Sudoku(SudokuGeneratorStrategy strategy)
+        public Sudoku(SudokuGeneratorStrategy strategy) // генерація через стратегію
         {
             do
             {
@@ -186,7 +175,7 @@ namespace ProjectSudoku
                 Console.WriteLine(grid.GetLength(0));
             } while (IsSolved());
         }
-        public void Play()
+        public void Play() // Запускаємо гру судоку
         {
             int row = 0;
             int col = 0;
@@ -315,7 +304,7 @@ namespace ProjectSudoku
                 Console.ReadKey();
             }
         }
-        private bool IsSolved()
+        private bool IsSolved() // перевірка на вірність судоку
         {
             for (int row = 0; row < grid.GetLength(0); row++)
             {
@@ -351,7 +340,7 @@ namespace ProjectSudoku
             return true;
         }
 
-        private bool IsValidRow(int row)
+        private bool IsValidRow(int row) // Перевірка правильності рядка
         {
             bool[] usedValues = new bool[grid.GetLength(0)];
 
@@ -372,7 +361,7 @@ namespace ProjectSudoku
             return true;
         }
 
-        private bool IsValidColumn(int col)
+        private bool IsValidColumn(int col) // Перевірка правильності стовпця
         {
             bool[] usedValues = new bool[grid.GetLength(0)];
 
@@ -391,7 +380,7 @@ namespace ProjectSudoku
             return true;
         }
 
-        private bool IsValidSquare(int startRow, int startCol)
+        private bool IsValidSquare(int startRow, int startCol) // Перевіряємо квадрат 3х3
         {
             bool[] usedValues = new bool[9];
 
@@ -415,7 +404,7 @@ namespace ProjectSudoku
             return true;
         }
 
-        private bool CanPlaceNumber(int row, int col, int value)
+        private bool CanPlaceNumber(int row, int col, int value) // Перевірка на можливість вставки цифри
         {
             if (value < 1 || value > grid.GetLength(0))
             {
@@ -461,7 +450,7 @@ namespace ProjectSudoku
             return true;
         }
 
-        private void DisplayGrid(int c1, int c2)
+        private void DisplayGrid(int c1, int c2) // Відображаємо судоку
         {
             Console.Clear();
             Console.WriteLine("\t\tЛаскаво просимо до гри Судоку!");
