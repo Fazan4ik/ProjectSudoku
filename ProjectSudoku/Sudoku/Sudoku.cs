@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProjectSudoku
 {
-    public interface SudokuGeneratorStrategy // ЭТО ПАТТЕРН СТРАТЕГИЯ 
+    public interface SudokuGeneratorStrategy // це паттерн стратегія
     {
         int[,] GenerateGrid();
     }
-    class SudokuGenerator : SudokuGeneratorStrategy // ЭТО ГЕНЕРАЦИЯ СУДОКУ 
+    class SudokuGenerator : SudokuGeneratorStrategy // Це генерація судоку
     {
         private int BoardSize = 9;
         private const int SubgridSize = 3;
